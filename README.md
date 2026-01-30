@@ -7,7 +7,7 @@ Cấu trúc thư mục được tổ chức để tách biệt Front-end và Bac
 
     flashcards-server/: Chứa Node.js backend xử lý API.
 
-    flashcards-client/: Chứa React frontend hiển thị giao diện người dùng.
+    flashcards/: Chứa React frontend hiển thị giao diện người dùng.
 
 🚀 How to Run
 
