@@ -1,13 +1,9 @@
-function Controls({ current, total, onNext, onPrev }) {
+function Controls({ onNext, onPrev, isFirst, isLast }) {
   return (
-    <div className="controls-bar">
-      <button onClick={onPrev} disabled={current === 1}>←</button>
-      <span className="page-info">
-        <strong>{current}</strong> / {total}
-      </span>
-      <button onClick={onNext} disabled={current === total}>→</button>
+    <div className="controls">
+      <button onClick={onPrev} disabled={isFirst}>← Previous</button>
+      <button onClick={onNext} disabled={isLast}>Next →</button>
     </div>
   );
 }
-
 export default Controls;
