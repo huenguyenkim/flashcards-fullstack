@@ -1,0 +1,64 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #d1d9e6; /* Màu nền xám xanh nhạt */
+}
+
+.flashcard-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.card {
+  width: 320px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  border-radius: 12px;
+  font-family: Arial, sans-serif;
+}
+
+/* Thẻ xanh chứa Word - Có đổ bóng đậm phía dưới */
+.word-card {
+  background-color: #5bc0de;
+  color: white;
+  border-bottom: 8px solid #31b0d5; 
+}
+
+/* Thẻ trắng chứa Definition - Có viền vàng phía dưới */
+.meaning-card {
+  background-color: white;
+  color: black;
+  border-bottom: 8px solid #f0ad4e; 
+}
+
+.controls-bar {
+  margin-top: 25px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.controls-bar button {
+  padding: 5px 12px;
+  border: 1px solid #ccc;
+  background: #eee;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.controls-bar button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.page-info {
+  font-size: 1.2rem;
+  color: #666;
+}
