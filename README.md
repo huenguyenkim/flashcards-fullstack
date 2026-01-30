@@ -15,27 +15,47 @@ Cấu trúc thư mục được tổ chức để tách biệt Front-end và Bac
 
     Frontend: Truy cập flashcards và chạy npm run dev.
 
+🔗 Live Deployment Links
+
+Dự án đã được triển khai trực tuyến tại các địa chỉ sau:
+
+    Frontend (Giao diện React): flashcards-fullstack-r3eu-git-main-huenguyenkims-projects.vercel.app
+
+        Được host trên Vercel, kết nối trực tiếp với API Backend để lấy dữ liệu.
+
+    Backend API (Server Node.js): [https://your-backend-link.onrender.com]
+        Được host trên Render, cung cấp các endpoint JSON cho ứng dụng.
+
 📊 Results & API Endpoints
 
-Sau khi chạy, ứng dụng đạt được các kết quả sau:
+Sau khi chạy hoặc truy cập link deploy, bạn có thể kiểm tra các kết quả sau:
 1. Backend Endpoints (Tested)
 
-Hệ thống cung cấp 2 cổng dữ liệu chuẩn JSON:
+Hệ thống cung cấp dữ liệu chuẩn JSON qua các đường dẫn:
 
-    Word Count: http://localhost:8000/wordcount trả về {"wordcount": 6}.
+    Word Count: https://your-backend-link.onrender.com/wordcount trả về {"wordcount": 6}.
 
-    Get Word: http://localhost:8000/getword/:index trả về thông tin chi tiết của một từ dựa trên chỉ số.
+    Get Word: https://your-backend-link.onrender.com/getword/0 trả về chi tiết từ vựng:
+    JSON
+
+    {
+      "index": 0,
+      "word": "pretty",
+      "def": "xinh đẹp"
+    }
 
 2. Frontend Integration
 
-    Data Fetching: Sử dụng hàm fetch trong vòng đời componentDidMount để đồng bộ dữ liệu với server ngay khi ứng dụng khởi chạy.
+    Data Fetching: Sử dụng fetch trong componentDidMount để lấy số lượng từ và nội dung từ đầu tiên từ Backend ngay khi tải trang.
 
-    CORS Handling: Đã thiết lập Header Access-Control-Allow-Origin: * tại server để cho phép trình duyệt truy xuất dữ liệu từ client.
+    CORS Handling: Đã cấu hình Header Access-Control-Allow-Origin: * tại server Express để cho phép Frontend gọi dữ liệu thành công.
 
-    State Management: Quản lý trạng thái từ vựng và chỉ số hiện tại thông qua React State, đảm bảo UI cập nhật mượt mà khi người dùng điều hướng.
+    State Management: Trạng thái current được quản lý trong Class Component App, đảm bảo UI tự động render lại khi dữ liệu từ API trả về.
 
 📸 Preview
 
-    Giao diện: Hiển thị thẻ bài màu xanh cho từ vựng và thẻ trắng cho định nghĩa.
+    Giao diện: Thẻ xanh hiển thị từ vựng (word), thẻ trắng hiển thị định nghĩa (definition).
 
-    Điều hướng: Nút mũi tên cho phép chuyển đổi giữa các từ, đồng thời cập nhật trạng thái 1 / 6, 2 / 6 dựa trên dữ liệu thực tế từ server.
+    Điều hướng: Nút mũi tên kích hoạt phương thức nextWord, tăng chỉ số current trong state và gọi API để lấy từ tiếp theo
+
+
