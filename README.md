@@ -13,7 +13,7 @@ Cấu trúc thư mục được tổ chức để tách biệt Front-end và Bac
 
     Backend: Truy cập flashcards-server và chạy node server.js. Server sẽ lắng nghe tại cổng 8000.
 
-    Frontend: Truy cập flashcards-client và chạy npm run dev.
+    Frontend: Truy cập flashcards và chạy npm run dev.
 
 📊 Results & API Endpoints
 
