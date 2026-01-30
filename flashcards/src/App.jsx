@@ -1,89 +1,61 @@
+// src/App.jsx
 import React from 'react';
 import './App.css';
-import Flashcard from './Flashcard';
-import Controls from './Controls';
+
+// Lấy URL Backend từ Environment Variable trên Vercel
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    // Khởi tạo state trống, dữ liệu sẽ được lấy từ server sau
     this.state = {
       currentIdx: 0,
       wordcount: 0,
-      currentWord: { word: "Loading...", def: "Đang tải..." }
+      data: { word: "word", def: "definition" }
     };
   }
 
-  // 1. Khi component vừa hiển thị, gọi API để lấy dữ liệu ban đầu
   componentDidMount() {
-    this.fetchWordCount();
-    this.fetchWordData(0); // Lấy từ đầu tiên (index 0)
+    this.fetchCount();
+    this.fetchWord(0);
   }
 
-  // 2. Hàm lấy tổng số lượng từ từ server
-  fetchWordCount = () => {
-    fetch('http://localhost:8000/wordcount')
+  fetchCount = () => {
+    fetch(`${API_URL}/wordcount`)
       .then(res => res.json())
-      .then(data => {
-        this.setState({ wordcount: data.wordcount });
-      })
-      .catch(err => console.error("Lỗi lấy tổng số từ:", err));
+      .then(d => this.setState({ wordcount: d.wordcount }));
   };
 
-  // 3. Hàm lấy chi tiết một từ dựa trên index
-  fetchWordData = (index) => {
-    fetch(`http://localhost:8000/getword/${index}`)
+  fetchWord = (index) => {
+    fetch(`${API_URL}/getword/${index}`)
       .then(res => res.json())
-      .then(data => {
-        this.setState({ 
-          currentWord: { word: data.word, def: data.def },
-          currentIdx: data.index 
-        });
-      })
-      .catch(err => console.error("Lỗi lấy dữ liệu từ:", err));
-  };
-
-  // 4. Xử lý khi nhấn nút Next
-  handleNext = () => {
-    const nextIdx = this.state.currentIdx + 1;
-    if (nextIdx < this.state.wordcount) {
-      this.fetchWordData(nextIdx);
-    }
-  };
-
-  // 5. Xử lý khi nhấn nút Prev
-  handlePrev = () => {
-    const prevIdx = this.state.currentIdx - 1;
-    if (prevIdx >= 0) {
-      this.fetchWordData(prevIdx);
-    }
+      .then(d => this.setState({ data: d, currentIdx: d.index }));
   };
 
   render() {
-    const { currentIdx, wordcount, currentWord } = this.state;
-
+    const { currentIdx, wordcount, data } = this.state;
     return (
       <div className="app-container">
-        <h1>Flashcards Full-stack</h1>
-        
-        {/* Truyền dữ liệu từ API xuống Flashcard */}
-        <Flashcard 
-          word={currentWord.word} 
-          meaning={currentWord.def} 
-        />
-        
-        {/* Hiển thị tiến trình */}
-        <div className="status">
-          {wordcount > 0 ? `${currentIdx + 1} / ${wordcount}` : "Đang tải..."}
+        <div className="flashcard-wrapper">
+          <div className="card word-card">{data.word}</div>
+          <div className="card meaning-card">{data.def}</div>
         </div>
 
-        {/* Truyền các hàm điều khiển xuống Controls */}
-        <Controls 
-          onNext={this.handleNext} 
-          onPrev={this.handlePrev}
-          isFirst={currentIdx === 0}
-          isLast={currentIdx === wordcount - 1}
-        />
+        <div className="controls-bar">
+          <button 
+            disabled={currentIdx === 0} 
+            onClick={() => this.fetchWord(currentIdx - 1)}
+          > ← </button>
+          
+          <span className="page-info">
+            {currentIdx + 1} / {wordcount}
+          </span>
+          
+          <button 
+            disabled={currentIdx === wordcount - 1} 
+            onClick={() => this.fetchWord(currentIdx + 1)}
+          > → </button>
+        </div>
       </div>
     );
   }
