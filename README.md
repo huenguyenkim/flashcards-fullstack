@@ -19,11 +19,11 @@ Cấu trúc thư mục được tổ chức để tách biệt Front-end và Bac
 
 Dự án đã được triển khai trực tuyến tại các địa chỉ sau:
 
-    Frontend (Giao diện React): flashcards-fullstack-r3eu-git-main-huenguyenkims-projects.vercel.app
+    Frontend (Giao diện React): [flashcards-fullstack-r3eu-git-main-huenguyenkims-projects.vercel.app](https://flashcards-fullstack-hk9qe2zvb-huenguyenkims-projects.vercel.app)
 
         Được host trên Vercel, kết nối trực tiếp với API Backend để lấy dữ liệu.
 
-    Backend API (Server Node.js): [https://your-backend-link.onrender.com]
+    Backend API (Server Node.js): [[https://your-backend-link.onrender.com]](https://flashcards-fullstack.onrender.com/)
         Được host trên Render, cung cấp các endpoint JSON cho ứng dụng.
 
 📊 Results & API Endpoints
