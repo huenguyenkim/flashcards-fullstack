@@ -1,6 +1,6 @@
 Flashcards Full-stack Application (Updated)
 
-Dự án này là kết quả của Tutorial 12, nâng cấp từ Activity 1 của Tutorial 11 bằng cách chuyển toàn bộ logic dữ liệu sang Backend.
+
 🏗 Project Structure
 
 Cấu trúc thư mục được tổ chức để tách biệt Front-end và Back-end:
